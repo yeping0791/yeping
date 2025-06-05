@@ -1,14 +1,16 @@
-# wxcloudrun-thinkphp
-[![GitHub license](https://img.shields.io/github/license/WeixinCloud/wxcloudrun-express)](https://github.com/WeixinCloud/wxcloudrun-express)
-![GitHub package.json dependency version (prod)](https://img.shields.io/badge/php-7.3-green)
+# wxcloudrun-express
 
-微信云托管 Thinkphp 框架模版，实现简单的计数器读写接口，使用云托管 MySQL 读写、记录计数值。
+[![GitHub license](https://img.shields.io/github/license/WeixinCloud/wxcloudrun-express)](https://github.com/WeixinCloud/wxcloudrun-express)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/WeixinCloud/wxcloudrun-express/express)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/WeixinCloud/wxcloudrun-express/sequelize)
+
+微信云托管 Node.js Express 框架模版，实现简单的计数器读写接口，使用云托管 MySQL 读写、记录计数值。
 
 ![](https://qcloudimg.tencent-cloud.cn/raw/be22992d297d1b9a1a5365e606276781.png)
 
-
 ## 快速开始
-前往 [微信云托管快速开始页面](https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/basic/guide.html)，选择相应语言的模板，根据引导完成部署。
+
+前往 [微信云托管快速开始页面](https://cloud.weixin.qq.com/cloudrun/onekey)，选择相应语言的模板，根据引导完成部署。
 
 ## 本地调试
 下载代码在本地调试，请参考[微信云托管本地调试指南](https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/guide/debug/)
@@ -19,34 +21,25 @@
 ## Dockerfile最佳实践
 请参考[如何提高项目构建效率](https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/scene/build/speed.html)
 
+## 项目结构说明
 
-## 目录结构说明
-~~~
+```
 .
-├── Dockerfile                  Dockerfile 文件
-├── README.md                   README 文件
-├── app                         应用目录
-│   ├── controller              控制器目录
-│   ├── model                   模型目录
-│   └── view                    视图目录
-├── conf                        配置文件
-│   ├── fpm.conf                fpm 配置
-│   ├── nginx.conf              nginx 配置
-│   └── php.ini                 php 配置
-├── config                      thinkphp 配置
-├── container.config.json       模板部署「服务设置」初始化配置（二开请忽略）
-├── public                      WEB目录（对外访问目录）
-│   ├── favicon.ico             图标
-│   ├── index.php               入口文件       
-│   └── router.php              快速测试文件 
-├── route                       路由文件			
-│   └── app.php                 定义应用路由
-├── run.sh                      nginx、fpm 启动
-├── runtime                     应用的运行时目录（可写，可定制）
-├── think                       命令行入口文件
-└── vendor                      第三方类库目录
-~~~
+├── Dockerfile
+├── README.md
+├── container.config.json
+├── db.js
+├── index.js
+├── index.html
+├── package.json
+```
 
+- `index.js`：项目入口，实现主要的读写 API
+- `db.js`：数据库相关实现，使用 `sequelize` 作为 ORM
+- `index.html`：首页代码
+- `package.json`：Node.js 项目定义文件
+- `container.config.json`：模板部署「服务设置」初始化配置（二开请忽略）
+- `Dockerfile`：容器配置文件
 
 ## 服务 API 文档
 
@@ -77,8 +70,6 @@
 ```
 curl https://<云托管服务域名>/api/count
 ```
-
-
 
 ### `POST /api/count`
 
@@ -124,7 +115,6 @@ curl -X POST -H 'content-type: application/json' -d '{"action": "inc"}' https://
 - MYSQL_PASSWORD
 - MYSQL_USERNAME
 以上三个变量的值请按实际情况填写。如果使用云托管内MySQL，可以在控制台MySQL页面获取相关信息。
-
 
 
 ## License
